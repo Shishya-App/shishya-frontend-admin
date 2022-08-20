@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Button } from 'antd'
-
 const Home: NextPage = () => {
 	return (
 		<div>
@@ -12,7 +10,6 @@ const Home: NextPage = () => {
 			</Head>
 			<main>
 				<h1>Shishya Admin Page</h1>
-				<Button type="primary">Ant Design is Ready</Button>
 			</main>
 		</div>
 	)
