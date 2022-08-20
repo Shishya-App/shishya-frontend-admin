@@ -1,30 +1,22 @@
 import React from 'react'
-
 import AuthHeader from '../components/AuthHeader'
 
-import { Typography, Layout } from 'antd'
+import { Typography } from 'antd'
 import { Tabs } from 'antd'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 
-const { Content } = Layout
+// const { Content } = Layout
 const { Title } = Typography
 const { TabPane } = Tabs
-
+import CustomLayout from '../components/Layout'
 const onChange = (key: string) => {
 	console.log(key)
 }
 
 const Auth = () => {
 	return (
-		<Layout
-			style={{
-				background: '#F0F2F5',
-				height: '100vh',
-				display: 'flex',
-				justifyContent: 'flex-start',
-			}}
-		>
+		<CustomLayout>
 			<AuthHeader />
 			<Tabs
 				size="large"
@@ -39,7 +31,7 @@ const Auth = () => {
 					<SignUp />
 				</TabPane>
 			</Tabs>
-		</Layout>
+		</CustomLayout>
 	)
 }
 

@@ -1,0 +1,19 @@
+.custom__style{
+    background-color: white;
+    overflow-x: clip;
+    overflow-y: auto;
+}
+.side__panel__title{
+    font-size: 36px;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+}
+
+.custom__style {
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+.custom__style::-webkit-scrollbar { 
+    display: none; 
+}
