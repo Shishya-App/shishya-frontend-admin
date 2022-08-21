@@ -10,6 +10,21 @@
     font-weight: 600;
 }
 
+.custom__content{
+    padding: 24;
+    margin: 0;
+    height: 100vh;
+    min-height: calc(100vh - 64px);
+    overflow-y: auto;
+}
+
+.custom__content{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.custom__content::-webkit-scrollbar { 
+    display: none; 
+}
 .custom__style {
     -ms-overflow-style: none;
     scrollbar-width: none; 

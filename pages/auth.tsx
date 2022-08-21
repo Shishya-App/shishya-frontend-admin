@@ -16,7 +16,7 @@ const onChange = (key: string) => {
 
 const Auth = () => {
 	return (
-		<>
+		<div>
 			<AuthHeader />
 			<Tabs
 				size="large"
@@ -31,7 +31,7 @@ const Auth = () => {
 					<SignUp />
 				</TabPane>
 			</Tabs>
-		</>
+		</div>
 	)
 }
 

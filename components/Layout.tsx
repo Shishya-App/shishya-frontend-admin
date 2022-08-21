@@ -43,9 +43,9 @@ const items2 = [
 const CustomLayout = ({ children }: IProps) => {
   const [collapsed, setCollapsed] = useState(false);
 	return (
-		<Layout style={{ height: '100vh', overflowY: 'clip' }}>
+		<Layout style={{ height: '100vh', overflowY: 'clip'}}>
 			<Layout>
-				<Sider width={200} className={styles.custom__style} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+				<Sider width={230} className={styles.custom__style} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
           <div
 						style={{
 							height: '20%',
@@ -85,14 +85,8 @@ const CustomLayout = ({ children }: IProps) => {
 					>
 						<CustomHeader />
             <Content
-              className="site-layout-background"
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-              }}
+              className={styles.custom__content}
             >
-
 						  {children}
             </Content>
 					</Content>
