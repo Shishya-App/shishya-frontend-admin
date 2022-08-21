@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
 	LaptopOutlined,
 	NotificationOutlined,
@@ -41,26 +41,31 @@ const items2 = [
 })
 
 const CustomLayout = ({ children }: IProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+	const [collapsed, setCollapsed] = useState(false)
 	return (
-		<Layout style={{ height: '100vh', overflowY: 'clip'}}>
+		<Layout style={{ height: '100vh', overflowY: 'clip' }}>
 			<Layout>
-				<Sider width={230} className={styles.custom__style} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-          <div
+				<Sider
+					width={230}
+					className={styles.custom__style}
+					collapsible
+					collapsed={collapsed}
+					onCollapse={(value) => setCollapsed(value)}
+				>
+					<div
 						style={{
 							height: '20%',
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',
+							backgroundColor: 'white'
 						}}
 					>
-            {
-              !collapsed ? 
-              <p className={styles.side__panel__title}>SHISHYA</p>
-              : null
-            }
+						{!collapsed ? (
+							<p className={styles.side__panel__title}>SHISHYA</p>
+						) : null}
 					</div>
-          
+
 					<Menu
 						mode="inline"
 						defaultOpenKeys={['sub1']}
@@ -84,11 +89,7 @@ const CustomLayout = ({ children }: IProps) => {
 						}}
 					>
 						<CustomHeader />
-            <Content
-              className={styles.custom__content}
-            >
-						  {children}
-            </Content>
+						<Content className={styles.custom__content}>{children}</Content>
 					</Content>
 				</Layout>
 			</Layout>
