@@ -40,20 +40,22 @@ const CustomLayout = ({children} : IProps) => {
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
     </Header> */}
     <Layout>
-      <Sider width={200} className={styles.custom__style}>
-        <div style={{height: '20%', display:'flex', justifyContent:'center', alignItems:'center', borderWidth: 1, borderColor: 'black'}}>
+      <Sider width={200} className={styles.sidepanel__main}>
+        <div className={styles.side__panel__title__wrapper}>
             <p className={styles.side__panel__title}>SHISHYA</p>
         </div>
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          style={{
-            height: '100%',
-            borderRight: 0,
-          }}
-          items={items2}
-        />
+        <div className={styles.custom__style}>
+            <Menu
+            mode="inline"
+            defaultSelectedKeys={['1']}
+            defaultOpenKeys={['sub1']}
+            style={{
+                height: '100%',
+                borderRight: 0,
+            }}
+            items={items2}
+            />
+        </div>
       </Sider>
       <Layout
         style={{
