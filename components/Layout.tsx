@@ -58,7 +58,7 @@ const CustomLayout = ({ children }: IProps) => {
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',
-							backgroundColor: 'white'
+							backgroundColor: 'white',
 						}}
 					>
 						{!collapsed ? (
@@ -81,16 +81,8 @@ const CustomLayout = ({ children }: IProps) => {
 						padding: '0 24px 24px',
 					}}
 				>
-					<Content
-						className="site-layout-background"
-						style={{
-							margin: 0,
-							minHeight: 280,
-						}}
-					>
-						<CustomHeader />
-						<Content className={styles.custom__content}>{children}</Content>
-					</Content>
+					<CustomHeader />
+					<Content className={styles.custom__content}>{children}</Content>
 				</Layout>
 			</Layout>
 		</Layout>

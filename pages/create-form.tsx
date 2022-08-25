@@ -4,7 +4,7 @@ import CreateFormStatus from '../components/CreateFormStatus'
 import CustomButton from '../components/CustomButton'
 
 import CreateFormStep1 from '../components/create-form/create-form-step-1'
-import CreateFormStep2 from '../components/create-form/create-form-step-2'
+import CreateFormStep2 from '../components/create-form/createFormStep2'
 import CreateFormStep3 from '../components/create-form/create-form-step-3'
 
 const CreateForm = () => {
