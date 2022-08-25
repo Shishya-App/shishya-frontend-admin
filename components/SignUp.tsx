@@ -1,10 +1,11 @@
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Radio } from 'antd'
 import React from 'react'
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 const SignUp = () => {
 	const [form] = Form.useForm()
+	const [orgType, setOrgType] = React.useState('');
 
 	const onFinish = (values: any) => {
 		console.log(values)
@@ -16,6 +17,19 @@ const SignUp = () => {
 
 	return (
 		<Form form={form} name="control-hooks" onFinish={onFinish}>
+			<Form.Item>
+				<Radio.Group>
+					<Radio value="govt" onClick={() => {setOrgType('govt')}}> Government Organization </Radio>
+					<Radio value="pvt" onClick={() => {setOrgType('pvt')}}> Private Organization </Radio>
+				</Radio.Group>
+			</Form.Item>
+			{
+				orgType === 'govt' ?
+				<Form.Item>
+					<Input placeholder='Organization ID' size={"large"}/>
+			    </Form.Item>
+				: null
+			}
 			<Form.Item name="email" rules={[{ required: true }]}>
 				<Input
 					size="large"
@@ -59,6 +73,7 @@ const SignUp = () => {
 					}
 				/>
 			</Form.Item>
+			
 			<Form.Item>
 				<Button
 					type="primary"
