@@ -23,8 +23,16 @@ const CreateForm = () => {
 		}
 	}
 
+	const submitHandler = () => {}
+
 	return (
-		<div className={styles.form__components}>
+		<div
+			className={styles.form__components}
+			style={{
+				height: '80vh',
+				overflowY: 'scroll',
+			}}
+		>
 			<p className={styles.create__form__title}>Create New Form</p>
 			<div className={styles.create__form__status__wrap}>
 				<CreateFormStatus />
@@ -32,7 +40,7 @@ const CreateForm = () => {
 			{handleStep()}
 			<div className={styles.button__wrapper}>
 				<div className={styles.button__internal__wrapper}>
-					{step > 1 ? (
+					{step === 2 ? (
 						<CustomButton
 							handleClick={() => setStep(step - 1)}
 							title={'Back'}
@@ -40,16 +48,17 @@ const CreateForm = () => {
 					) : null}
 				</div>
 				<div className={styles.button__internal__wrapper}>
-					{step < 3 ? (
+					{step === 1 ? (
 						<CustomButton
 							handleClick={() => setStep((prevStep) => prevStep + 1)}
 							title={'Next'}
 						/>
-					) : null}
+					) : (
+						<CustomButton handleClick={submitHandler} title={'Submit'} />
+					)}
 				</div>
 			</div>
 		</div>
 	)
 }
-
 export default CreateForm

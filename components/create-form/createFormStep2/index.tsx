@@ -15,9 +15,41 @@ const CreateFormStep2 = () => {
 		string[]
 	>([])
 
-	// React.useEffect(() => {
-	// 	console.log(selectedCheckboxOptions)
-	// }, [selectedCheckboxOptions])
+	const [customDocs, setCustomDocs] = React.useState<
+		{
+			title: string | null
+			isDeleted: boolean
+		}[]
+	>([{ title: null, isDeleted: false }])
+
+	const addCustomDocComponent = () => {
+		setCustomDocs((prevCustomDocs) => {
+			return [...prevCustomDocs, { title: null, isDeleted: false }]
+		})
+	}
+
+	const deleteCustomDocComponent = (index: number) => {
+		setCustomDocs((prevCustomDocs) => {
+			const newCustomDocs = [...prevCustomDocs]
+			newCustomDocs[index].isDeleted = true
+			return newCustomDocs
+		})
+	}
+
+	const customDocsComponents = React.useMemo(
+		() =>
+			customDocs.map((customDoc, index) => {
+				if (customDoc.isDeleted) return null
+				return (
+					<CustomDoc
+						title={customDoc.title}
+						deleteCustomDocComponent={() => deleteCustomDocComponent(index)}
+						key={index}
+					/>
+				)
+			}),
+		[customDocs]
+	)
 
 	return (
 		<div className={inputStyles.create__form__body}>
@@ -26,32 +58,41 @@ const CreateFormStep2 = () => {
 				style={{
 					display: 'flex',
 					position: 'relative',
-					marginTop:"4%"
+					marginTop: '2%',
+					marginLeft: '2%',
 				}}
 			>
-				<CustomDoc />
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						width: '75%',
+					}}
+				>
+					{customDocsComponents}
+				</div>
 				<div
 					style={{
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center',
-						height: '100%',
 						position: 'absolute',
-						top: '0',
-						right: '14vw',
+						bottom: '0',
+						right: '13vw',
 					}}
 				>
 					<Button
 						icon={<MdLibraryAdd size={30} />}
 						style={{
-							height: '60px',
-							width: '60px',
+							height: '65px',
+							width: '65px',
 							border: 'none',
 							background: 'white',
 							borderWidth: '1px',
 							borderColor: 'black',
 							borderRadius: '6px',
 						}}
+						onClick={addCustomDocComponent}
 					/>
 				</div>
 			</div>

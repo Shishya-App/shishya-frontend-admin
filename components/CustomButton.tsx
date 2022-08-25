@@ -1,17 +1,22 @@
-import React from "react";
-import styles from "../styles/Components/CustomButton.module.css";
+import React from 'react'
+import styles from '../styles/Components/CustomButton.module.css'
 
 interface IProps {
-    title: string;
-    handleClick: any;
+	title: string
+	handleClick: any
+	style?: {}
 }
 
-const CustomButton = ({title, handleClick}: IProps) => {
-    return (
-        <div className={styles.button__container} onClick={handleClick}>
-            <div className={styles.button__text}>{title}</div>
-        </div>
-    )
+const CustomButton = ({ title, handleClick, style }: IProps) => {
+	return (
+		<div
+			className={styles.button__container}
+			onClick={handleClick}
+			style={{ ...style }}
+		>
+			<div className={styles.button__text}>{title}</div>
+		</div>
+	)
 }
 
-export default CustomButton;
+export default CustomButton

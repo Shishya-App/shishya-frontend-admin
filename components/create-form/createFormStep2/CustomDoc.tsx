@@ -3,7 +3,12 @@ import React from 'react'
 import { Button } from 'antd'
 import { DeleteOutlined, SaveOutlined } from '@ant-design/icons'
 
-const CustomDoc = () => {
+type CustomDocType = {
+	title: string | null
+	deleteCustomDocComponent: () => void
+}
+
+const CustomDoc = ({ title, deleteCustomDocComponent }: CustomDocType) => {
 	return (
 		<div
 			style={{
@@ -13,48 +18,35 @@ const CustomDoc = () => {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'space-between',
-				width: '75%',
+				marginTop: '2%',
 			}}
 		>
 			<div style={{ width: '45%' }}>
-				<input
-					placeholder="Custom Document Name"
-					style={{ width: '100%', border: '0', fontSize: '1.2rem' }}
-				/>
+				{title !== null ? (
+					<input
+						value={title}
+						style={{ width: '100%', border: '0', fontSize: '1.2rem' }}
+					/>
+				) : (
+					<input
+						placeholder="Custom Document Name"
+						style={{ width: '100%', border: '0', fontSize: '1.2rem' }}
+					/>
+				)}
 				<div
 					style={{ height: '1px', width: '100%', backgroundColor: '#A39797' }}
 				/>
 			</div>
-			<div
+			<Button
+				icon={<DeleteOutlined size={50} style={{ color: 'white' }} />}
 				style={{
-					display: 'flex',
-					width: '30%',
-					justifyContent: 'space-between',
+					border: 'none',
+					width: '50px',
+					background: 'red',
+					borderRadius: '6px',
 				}}
-			>
-				<Button
-					icon={<DeleteOutlined size={48} style={{ color: 'white' }} />}
-					style={{
-						border: 'none',
-						width: '48px',
-						background: 'red',
-						borderRadius: '6px',
-					}}
-				/>
-				<Button
-					icon={<SaveOutlined style={{ color: 'white' }} />}
-					style={{
-						border: 'none',
-						background: '#54C940',
-						color: 'white',
-						fontSize: '0.9rem',
-						fontWeight: '600',
-						borderRadius: '6px',
-					}}
-				>
-					Save Document
-				</Button>
-			</div>
+				onClick={deleteCustomDocComponent}
+			/>
 		</div>
 	)
 }

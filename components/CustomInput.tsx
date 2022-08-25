@@ -39,7 +39,7 @@ const CustomInput = ({ placeholder, type, data, label }: IProps) => {
 					</Select>
 				) : null}
 				{type === 'textarea' ? (
-					<TextArea rows={5} className={styles.input__element__comp} />
+					<TextArea rows={4} className={styles.input__element__comp} />
 				) : null}
 			</div>
 		</div>

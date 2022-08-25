@@ -51,6 +51,7 @@ const DocCheckboxes = ({ setSelectedCheckboxOptions }: docCheckboxesType) => {
 				width: '100%',
 				justifyContent: 'flex-start',
 				marginBottom: '2%',
+				marginTop: '2%',
 			}}
 		>
 			<label className={inputStyles.input__label}>Required Documents</label>
