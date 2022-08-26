@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import {
+	DownOutlined,
+	FormOutlined,
 	LaptopOutlined,
 	NotificationOutlined,
 	UserOutlined,
@@ -24,24 +27,62 @@ const items2 = [
 	NotificationOutlined,
 	LaptopOutlined,
 	NotificationOutlined,
-].map((icon, index) => {
-	const key = String(index + 1)
-	return {
-		key: `sub${key}`,
-		icon: React.createElement(icon),
-		label: `subnav ${key}`,
-		children: new Array(4).fill(null).map((_, j) => {
-			const subKey = index * 4 + j + 1
-			return {
-				key: subKey,
-				label: `option${subKey}`,
-			}
-		}),
-	}
-})
+]
 
 const CustomLayout = ({ children }: IProps) => {
+	const router = useRouter()
 	const [collapsed, setCollapsed] = useState(false)
+
+	const navItems = React.useMemo(
+		() => [
+			{
+				key: 0,
+				icon: React.createElement(UserOutlined),
+				label: 'Login/Signup',
+				onClick: () => router.push('/auth'),
+			},
+			{
+				key: 1,
+				icon: React.createElement(UserOutlined),
+				label: 'Dashboard',
+				onClick: () => router.push('/dashboard'),
+			},
+			{
+				key: 2,
+				icon: <FormOutlined />,
+				label: 'Forms',
+				children: [
+					{
+						key: 0,
+						label: 'Create Form',
+						onClick: () => router.push('/create-form'),
+					},
+					{
+						key: 1,
+						label: 'View Form Responses',
+						onClick: () => router.push('/form-responses'),
+					},
+				],
+			},
+			{
+				key: 3,
+				icon: React.createElement(UserOutlined),
+				label: 'Oppotunities',
+				children: [
+					{
+						key: 0,
+						label: 'Create Opportunity',
+						onClick: () => router.push('/create-opportunity'),
+					},
+					{
+						key: 1,
+						label: 'View Applications',
+					},
+				],
+			},
+		],
+		[router]
+	)
 	return (
 		<Layout style={{ height: '100vh', overflowY: 'clip' }}>
 			<Layout>
@@ -73,7 +114,7 @@ const CustomLayout = ({ children }: IProps) => {
 							height: '100%',
 							borderRight: 0,
 						}}
-						items={items2}
+						items={navItems}
 					/>
 				</Sider>
 				<Layout

@@ -3,12 +3,21 @@ import React from 'react'
 import { Button } from 'antd'
 import { DeleteOutlined, SaveOutlined } from '@ant-design/icons'
 
+import useFormStore from '../formStore'
+
 type CustomDocType = {
 	title: string | null
 	deleteCustomDocComponent: () => void
+	index: number
 }
 
-const CustomDoc = ({ title, deleteCustomDocComponent }: CustomDocType) => {
+const CustomDoc = ({
+	title,
+	deleteCustomDocComponent,
+	index,
+}: CustomDocType) => {
+	const { changeCustomDocTitleByIndex } = useFormStore()
+
 	return (
 		<div
 			style={{
@@ -26,11 +35,17 @@ const CustomDoc = ({ title, deleteCustomDocComponent }: CustomDocType) => {
 					<input
 						value={title}
 						style={{ width: '100%', border: '0', fontSize: '1.2rem' }}
+						onChange={(e) => {
+							changeCustomDocTitleByIndex(index, e.target.value)
+						}}
 					/>
 				) : (
 					<input
 						placeholder="Custom Document Name"
 						style={{ width: '100%', border: '0', fontSize: '1.2rem' }}
+						onChange={(e) => {
+							changeCustomDocTitleByIndex(index, e.target.value)
+						}}
 					/>
 				)}
 				<div

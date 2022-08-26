@@ -3,57 +3,42 @@ import React from 'react'
 import DocCheckboxes from './DocCheckboxes'
 import CustomDoc from './CustomDoc'
 
-import { Button } from 'antd'
+import useFormStore from '../formStore'
 
+import { Button } from 'antd'
 import { MdLibraryAdd } from 'react-icons/md'
 
 import inputStyles from '../../../styles/Components/CustomInput.module.css'
 import styles from '../../../styles/Pages/create-form-step1.module.css'
 
 const CreateFormStep2 = () => {
-	const [selectedCheckboxOptions, setSelectedCheckboxOptions] = React.useState<
-		string[]
-	>([])
-
-	const [customDocs, setCustomDocs] = React.useState<
-		{
-			title: string | null
-			isDeleted: boolean
-		}[]
-	>([{ title: null, isDeleted: false }])
-
-	const addCustomDocComponent = () => {
-		setCustomDocs((prevCustomDocs) => {
-			return [...prevCustomDocs, { title: null, isDeleted: false }]
-		})
-	}
-
-	const deleteCustomDocComponent = (index: number) => {
-		setCustomDocs((prevCustomDocs) => {
-			const newCustomDocs = [...prevCustomDocs]
-			newCustomDocs[index].isDeleted = true
-			return newCustomDocs
-		})
-	}
+	const { customDocs, addCustomDocComponent, deleteCustomDocComponent } =
+		useFormStore()
 
 	const customDocsComponents = React.useMemo(
 		() =>
-			customDocs.map((customDoc, index) => {
-				if (customDoc.isDeleted) return null
-				return (
-					<CustomDoc
-						title={customDoc.title}
-						deleteCustomDocComponent={() => deleteCustomDocComponent(index)}
-						key={index}
-					/>
-				)
-			}),
-		[customDocs]
+			customDocs.map(
+				(
+					customDoc: { isDeleted: any; title: string | null },
+					index: number
+				) => {
+					if (customDoc.isDeleted) return null
+					return (
+						<CustomDoc
+							key={index}
+							index={index}
+							title={customDoc.title}
+							deleteCustomDocComponent={() => deleteCustomDocComponent(index)}
+						/>
+					)
+				}
+			),
+		[customDocs, deleteCustomDocComponent]
 	)
 
 	return (
 		<div className={inputStyles.create__form__body}>
-			<DocCheckboxes setSelectedCheckboxOptions={setSelectedCheckboxOptions} />
+			<DocCheckboxes />
 			<div
 				style={{
 					display: 'flex',

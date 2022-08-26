@@ -3,49 +3,35 @@ import React from 'react'
 import { Checkbox, Row } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
-import useFormStore from '../formStore'
-import AxiosInstance from '../../../services/AxiosInstance'
-
 import inputStyles from '../../../styles/Components/CustomInput.module.css'
 
-const DocCheckboxes = () => {
-	const { selectCheckboxOption, unselectCheckboxOption } = useFormStore(
-		(state) => ({
-			selectCheckboxOption: state.selectCheckboxOption,
-			unselectCheckboxOption: state.unselectCheckboxOption,
-		})
-	)
+type EligibilityCheckboxes = {
+	setSelectedCheckboxOptions: React.Dispatch<React.SetStateAction<string[]>>
+}
 
-	const checkboxOptions = React.useMemo(
-		() => [
-			'SSC',
-			'HSC',
-			'AdhaarFile',
-			'MigrationCertificate',
-			'JEEmarksheet',
-			'JEEallotmentLetter',
-			'DisabilityCertificate',
-			'DomicileCertificate',
-			'PAN',
-			'BirthCertificate',
-			'SportsCertificate',
-			'TransferCertificate',
-			'CasteCertificate',
-			'Passport',
-			'IncomeCertificate',
-			'MedicalCertificate',
-			'NationalityCertificate',
-		],
-		[]
-	)
+const EligibilityCheckboxes = ({
+	setSelectedCheckboxOptions,
+}: EligibilityCheckboxes) => {
+	const [checkboxOptions, setCheckboxOptions] = React.useState<string[]>([
+		'First Year',
+		'Second Year',
+		'Third Year',
+		'Fourth Year',
+		'Passout',
+	])
+
+	// fetch the document names from API
 
 	const checkboxChangeHandler = (e: CheckboxChangeEvent) => {
-		const value = e.target.value
-
 		if (e.target.checked) {
-			selectCheckboxOption(value)
+			setSelectedCheckboxOptions((prevCheckboxOptions) => [
+				...prevCheckboxOptions,
+				e.target.value,
+			])
 		} else {
-			unselectCheckboxOption(value)
+			setSelectedCheckboxOptions((prevCheckboxOptions) =>
+				prevCheckboxOptions.filter((option) => option !== e.target.value)
+			)
 		}
 	}
 
@@ -72,12 +58,15 @@ const DocCheckboxes = () => {
 				justifyContent: 'flex-start',
 				marginBottom: '2%',
 				marginTop: '2%',
+				marginLeft: '1%',
 			}}
 		>
-			<label className={inputStyles.input__label}>Required Documents</label>
+			<label className={inputStyles.input__label} style={{ marginRight :"4.5%"}}>
+				Eligible Years
+			</label>
 			<div
 				style={{
-					width: '60%',
+					width: '55.5%',
 					background: 'white',
 					padding: '0.5% 3%',
 					marginLeft: '9%',
@@ -96,4 +85,4 @@ const DocCheckboxes = () => {
 	)
 }
 
-export default DocCheckboxes
+export default EligibilityCheckboxes

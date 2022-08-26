@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from '../styles/Components/create-form-status.module.css'
 
-type CreateFormStatusType = {
+type CreateJobStatusType = {
 	currentStep: number
 }
 
-const CreateFormStatus = ({ currentStep }: CreateFormStatusType) => {
+const CreateJobStatus = ({ currentStep }: CreateJobStatusType) => {
 	return (
 		<div className={styles.create__form__status__wrapper}>
 			<div className={styles.part__1}>
@@ -28,6 +28,16 @@ const CreateFormStatus = ({ currentStep }: CreateFormStatusType) => {
 						}
 					/>
 				</div>
+				<div className={styles.status__line} />
+				<div className={styles.status__wrapper}>
+					<div
+						className={
+							currentStep === 3
+								? styles.status__circle
+								: styles.status__circle__not
+						}
+					/>
+				</div>
 			</div>
 			<div className={styles.part__2}>
 				<div className={styles.title__wrapper}>
@@ -37,7 +47,7 @@ const CreateFormStatus = ({ currentStep }: CreateFormStatusType) => {
 							color: `rgba(0,0,0,${currentStep === 1 ? '0.85' : '0.45'})`,
 						}}
 					>
-						Form Details
+						Job Details
 					</p>
 				</div>
 				<div className={styles.title__wrapper}>
@@ -45,6 +55,16 @@ const CreateFormStatus = ({ currentStep }: CreateFormStatusType) => {
 						className={styles.status__title__notdone}
 						style={{
 							color: `rgba(0,0,0,${currentStep === 2 ? '0.85' : '0.45'})`,
+						}}
+					>
+						Eligibility of Students
+					</p>
+				</div>
+				<div className={styles.title__wrapper}>
+					<p
+						className={styles.status__title__notdone}
+						style={{
+							color: `rgba(0,0,0,${currentStep === 3 ? '0.85' : '0.45'})`,
 						}}
 					>
 						Document Required
@@ -55,4 +75,4 @@ const CreateFormStatus = ({ currentStep }: CreateFormStatusType) => {
 	)
 }
 
-export default CreateFormStatus
+export default CreateJobStatus

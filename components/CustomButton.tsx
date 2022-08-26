@@ -3,7 +3,7 @@ import styles from '../styles/Components/CustomButton.module.css'
 
 interface IProps {
 	title: string
-	handleClick: any
+	handleClick: () => void
 	style?: {}
 }
 
