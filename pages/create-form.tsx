@@ -30,76 +30,82 @@ const CreateForm = () => {
 	const OWNER_ID = 2
 
 	const submitHandler = async () => {
-		const {
-			title,
-			academicYear,
-			deadline,
-			description,
-			selectedCheckboxOptions,
-			customDocs,
-			setFormId,
-		} = useFormStore.getState()
-
-		const res = await AxiosInstance.post(
-			'/adminpanel/form/',
-			{
+		try {
+			const {
 				title,
+				academicYear,
 				deadline,
 				description,
-				academic_year: academicYear,
-				owner: OWNER_ID,
-			},
-			{
-				headers: {
-					Authorization: `Bearer ${ACCESS_TOKEN}`,
+				selectedCheckboxOptions,
+				customDocs,
+				setFormId,
+			} = useFormStore.getState()
+
+			const res = await AxiosInstance.post(
+				'/adminpanel/form/',
+				{
+					title,
+					deadline,
+					description,
+					academic_year: academicYear,
+					owner: OWNER_ID,
 				},
-			}
-		)
-
-		const formId = res.data.id
-		setFormId(formId)
-		console.log(formId)
-
-		console.log(selectedCheckboxOptions)
-		await Promise.all(
-			selectedCheckboxOptions.map(
-				async (selectedCheckboxOption: any) =>
-					await AxiosInstance.post(
-						'/adminpanel/questions/pre-verified/',
-						{
-							form: formId,
-							title: selectedCheckboxOption,
-							technique: 'pre_verified',
-						},
-						{
-							headers: {
-								Authorization: `Bearer ${ACCESS_TOKEN}`,
-							},
-						}
-					)
-			)
-		)
-
-		console.log(customDocs)
-		await Promise.all(
-			customDocs.map(async (customDoc: any) => {
-				if (!customDoc.isDeleted && customDoc.title) {
-					return await AxiosInstance.post(
-						'/adminpanel/questions/file/',
-						{
-							form: formId,
-							title: customDoc.title,
-							technique: 'file_upload',
-						},
-						{
-							headers: {
-								Authorization: `Bearer ${ACCESS_TOKEN}`,
-							},
-						}
-					)
+				{
+					headers: {
+						Authorization: `Bearer ${ACCESS_TOKEN}`,
+					},
 				}
-			})
-		)
+			)
+
+			const formId = res.data.id
+			setFormId(formId)
+			console.log(formId)
+
+			console.log(selectedCheckboxOptions)
+			await Promise.all(
+				selectedCheckboxOptions.map(
+					async (selectedCheckboxOption: any) =>
+						await AxiosInstance.post(
+							'/adminpanel/questions/pre-verified/',
+							{
+								form: formId,
+								title: selectedCheckboxOption,
+								technique: 'pre_verified',
+							},
+							{
+								headers: {
+									Authorization: `Bearer ${ACCESS_TOKEN}`,
+								},
+							}
+						)
+				)
+			)
+
+			console.log(customDocs)
+			await Promise.all(
+				customDocs.map(async (customDoc: any) => {
+					if (!customDoc.isDeleted && customDoc.title) {
+						return await AxiosInstance.post(
+							'/adminpanel/questions/file/',
+							{
+								form: formId,
+								title: customDoc.title,
+								technique: 'file_upload',
+							},
+							{
+								headers: {
+									Authorization: `Bearer ${ACCESS_TOKEN}`,
+								},
+							}
+						)
+					}
+				})
+			)
+
+			alert('Form has been created successfully.')
+		} catch (err) {
+			alert('An error occured, please try again.')
+		}
 	}
 
 	return (

@@ -250,9 +250,9 @@ const data = [
 ]
 
 const CustomTable = () => {
-	// const formId = useFormStore((state) => state.formId)
+	const formId = useFormStore((state) => state.formId)
 
-	// const [data, setData] = useState([])
+	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [pagination, setPagination] = useState({
 		current: 1,
@@ -261,22 +261,22 @@ const CustomTable = () => {
 	})
 
 	// API REQUEST FROM BACKEND
-	// useEffect(() => {
-	// 	console.log('FORM ID', formId)
-	// 	const ACCESS_TOKEN =
-	// 		'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4Nzc5NDEzLCJpYXQiOjE2NjE0OTk0MTMsImp0aSI6IjdiM2E2NzYzNWIxYjRkYWZiMTljYTg1NmI3NGQ0MWI1IiwidXNlcl9pZCI6Mn0.dzHFep_buR6XWpNCkrOkGEuh7Ah1H3M0M1sfL85XogM'
-	// 	AxiosInstance.post(
-	// 		'/adminpanel/view-responses/',
-	// 		{
-	// 			form: formId,
-	// 		},
-	// 		{
-	// 			headers: {
-	// 				Authorization: `Bearer ${ACCESS_TOKEN}`,
-	// 			},
-	// 		}
-	// 	).then((res) => console.log(res.data))
-	// }, [formId])
+	useEffect(() => {
+		console.log('FORM ID', formId)
+		const ACCESS_TOKEN =
+			'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4Nzc5NDEzLCJpYXQiOjE2NjE0OTk0MTMsImp0aSI6IjdiM2E2NzYzNWIxYjRkYWZiMTljYTg1NmI3NGQ0MWI1IiwidXNlcl9pZCI6Mn0.dzHFep_buR6XWpNCkrOkGEuh7Ah1H3M0M1sfL85XogM'
+		AxiosInstance.post(
+			'/adminpanel/view-responses/',
+			{
+				form: formId,
+			},
+			{
+				headers: {
+					Authorization: `Bearer ${ACCESS_TOKEN}`,
+				},
+			}
+		).then((res) => console.log(res.data))
+	}, [formId])
 
 	// const fetchData = (params: any) => {
 	// 	setLoading(true)
