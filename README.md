@@ -40,7 +40,7 @@ Team **HACKpacker$** ->
 [Ankur](https://github.com/AnkurKumarShukla).
 
 <br/>
-
+<!-- 
 <p align="center">
 Made with ❤️ && (👨🏽‍💻👩🏽‍💻).
-</p>
+</p> -->
