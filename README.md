@@ -25,6 +25,10 @@ Admin frontend of the Shishya App, for AICTE affiliated colleges, other governme
 
 ![image](https://user-images.githubusercontent.com/76112446/187077498-139bde7d-8ffa-42dd-b6b8-3df324a00bd9.png)
 
+## Links -
+ - [Idea PPT](https://drive.google.com/file/d/1QJrIDUCyQxIPIS8uhZSZW-5Bt4ePMnqH/view?usp=sharing)
+ - [Submission Video](https://www.youtube.com/watch?v=PCpE2mv3QDw)
+
 ## Tech Stack -
 - Next.js
 - Ant Design
